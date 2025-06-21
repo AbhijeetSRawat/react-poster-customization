@@ -28,7 +28,7 @@ const app = express();
 
 // Middleware
 
-app.use(cors({ origin: ['http://localhost:5500','https://ubiquitous-stardust-395c7f.netlify.app'],credentials:true }));
+app.use(cors({ origin: '*',credentials:true }));
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
 app.use(express.json());
