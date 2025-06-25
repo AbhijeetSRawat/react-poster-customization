@@ -77,7 +77,7 @@ const loginController = async (req, res) => {
         const adminPassword = "123456"
 
         const { email, password } = req.body;
-        const user = await User.findOne({ email : email });
+        const user = await User.findOne({ email : email }).populate('profile').exec();
 
         console.log(user);
 
@@ -99,11 +99,7 @@ const loginController = async (req, res) => {
             success: true,
             message: 'Login successful!',
             token, // Return token
-            user: {
-                email: user.email,
-                role:user.role,
-                firstName:user.firstName
-            },
+            user
         });
     } catch (error) {
         console.error("Error during login:", error);

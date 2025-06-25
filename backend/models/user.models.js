@@ -34,6 +34,10 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default:false
     },
+    profile:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Profile",
+    },
     role:{
         type:String,
         default: "customer"

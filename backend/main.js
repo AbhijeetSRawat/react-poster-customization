@@ -5,19 +5,24 @@ import cors from 'cors'
 import { connectionDataBase } from './dbConnection/database_connection.js';
 import { fileURLToPath } from 'url';
 import { app } from './app/app.js';
+
 import {productRoutes} from "./routes/productRoutes.js";
 import { userRoutes2 } from './routes/UserRoutes2.js';
 import { userRoutes } from './routes/userRoutes.js';
 // import { userRoutes } from './routes/userRoutes.js';
 import dotenv from 'dotenv';
 import { cloudinaryConnect } from './config/cloudinary.js';
+import fileUpload from 'express-fileupload';
 dotenv.config();
 
 app.use(cors({ origin: 'http://localhost:5173',credentials:true }));
 
 
 //Middleware
-
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: '/tmp/',
+}));
 app.use(express.json());
 app.use(urlencoded({extended: false}))
 cloudinaryConnect();

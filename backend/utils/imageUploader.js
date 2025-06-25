@@ -1,19 +1,21 @@
+import cloudinary from 'cloudinary';
 
-import cloudinary from "cloudinary"
-import dotenv from 'dotenv';
-dotenv.config();
+export const uploadImageToCloudinary = async (file, folder, width = null, height = null) => {
+  try {
+    const options = {
+      folder,
+      resource_type: 'image',
+    };
 
- async function uploadImageToCloudinary  (file, folder, height, quality){
-  const options = { folder }
-  if (height) {
-    options.height = height
+    if (width && height) {
+      options.width = width;
+      options.height = height;
+      options.crop = 'scale';
+    }
+
+    return await cloudinary.v2.uploader.upload(file.tempFilePath, options);
+  } catch (err) {
+    console.error("Cloudinary Upload Error:", err);
+    throw err;
   }
-  if (quality) {
-    options.quality = quality
-  }
-  options.resource_type = "auto"
-  console.log("OPTIONS", options)
-  return await cloudinary.uploader.upload(file.path, options)
-}
-
-export {uploadImageToCloudinary};
+};

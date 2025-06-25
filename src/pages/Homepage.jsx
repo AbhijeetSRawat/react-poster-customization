@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
-import { RiVideoFill, RiNotificationLine } from "react-icons/ri";
+
 import { FaSearch } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Heading from "../components/core/heading";
 
 
 
@@ -11,9 +11,9 @@ const Homepage = ({ mode, setTagvalue, setMode, searchValue, setSearchValue}) =>
 
 const navigate = useNavigate();
 
-  const changeTheme = () => {
-    setMode(!mode);
-  };
+  // const changeTheme = () => {
+  //   setMode(!mode);
+  // };
 
   const formattedDate = new Date().toLocaleDateString("en-GB", {
     day: "numeric",
@@ -75,10 +75,10 @@ const navigate = useNavigate();
     <div
       className={`${
         mode ? "bg-blue-300 text-gray-700" : "bg-slate-900 text-gray-400"
-      } min-h-screen`}
+      } min-h-screen pt-16`}
     >
       {/* Top Heading */}
-      <div className="w-full h-[10vh] p-3 flex justify-between items-center">
+      {/* <div className="w-full h-[10vh] p-3 flex justify-between items-center">
         <div>
           <div className="flex gap-2 text-xs items-center font-bold">
             Your Business
@@ -111,7 +111,8 @@ const navigate = useNavigate();
             className="rounded-full bg-white p-2 text-blue-600 shadow-md hover:bg-blue-100 cursor-pointer transition-all duration-300"
           />
         </div>
-      </div>
+      </div> */}
+      <Heading mode={mode} setMode={setMode}/>
 
       {/* Searchbar */}
       <div className="mt-3 flex justify-center">

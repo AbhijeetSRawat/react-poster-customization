@@ -5,7 +5,7 @@ export async function getUserDetails (req,res){
 
         const userId = req.user._id;
 
-        const user = await User.findById(userId);
+        const user = await User.findById(userId).populate('profile').exec();
 
         return res.status(200).json({
             success:true,
